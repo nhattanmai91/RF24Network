@@ -61,10 +61,8 @@ void RF24Network::update(void)
   {
     // Dump the payloads until we've gotten everything
     boolean done = false;
-    while (!done)
-    {
       // Fetch the payload, and see if this was the last one.
-      done = radio.read( frame_buffer, sizeof(frame_buffer) );
+      radio.read( frame_buffer, sizeof(frame_buffer) );
 
       // Read the beginning of the frame as the header
       const RF24NetworkHeader& header = * reinterpret_cast<RF24NetworkHeader*>(frame_buffer);
@@ -99,7 +97,6 @@ void RF24Network::update(void)
 	radio.openReadingPipe(1,pipe_address(node_address,1));
       }
 #endif
-    }
   }
 }
 
